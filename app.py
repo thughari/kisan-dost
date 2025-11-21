@@ -17,7 +17,7 @@ st.set_page_config(page_title="Kisan-Dost", page_icon="🌾", layout="wide")
 def init_services():
     try:
         vertexai.init(project=PROJECT_ID, location=LOCATION)
-        model = GenerativeModel("gemini-2.5-flash-lite") 
+        model = GenerativeModel("gemini-2.5-flash") 
         db = firestore.Client(project=PROJECT_ID)
         return model, db
     except Exception as e:
@@ -94,7 +94,7 @@ def analyze_image(image_bytes):
     return json.loads(responses.text)
 
 def ask_followup(question, context):
-    chat_model = GenerativeModel("gemini-2.5-flash-lite")
+    chat_model = GenerativeModel("gemini-2.5-flash")
     prompt = f"""
     Context: Plant disease '{context['disease_name']}'. Remedy: '{context['english']['organic_remedy']}'.
     User Q: {question}
