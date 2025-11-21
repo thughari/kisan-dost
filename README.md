@@ -57,25 +57,27 @@ PROJECT_ID = "build-blog-hyd-478805"
 gcloud auth login
 ```
 
-### 4️⃣ Run locally for testing
-
+### 4️⃣ Enable Required APIs
+Before deploying, enable the necessary Google Cloud services (Vertex AI, Cloud Run, Cloud Build, and Firestore):
 ```bash
-streamlit run app.py
+gcloud services enable \
+  aiplatform.googleapis.com \
+  run.googleapis.com \
+  cloudbuild.googleapis.com \
+  firestore.googleapis.com
 ```
-
-👉 Open in browser at: `http://localhost:8501`
 
 ---
 
-## 🚀 Deployment to Cloud Run
-🔹 navigate to the kisam-dost directory then run the following command
+## 5️⃣ Deployment to Cloud Run
+🔹 navigate to the kisan-dost directory then run the following command
 
 ```bash
 gcloud run deploy kisan-dost \
-  --image gcr.io/build-blog-hyd-478805/kisan-dost \
-  --platform managed \
-  --region europe-west1 \
-  --allow-unauthenticated
+   --source . \
+   --platform managed \
+   --region europe-west1 \
+   --allow-unauthenticated
 ```
 
 ---
